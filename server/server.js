@@ -51,24 +51,25 @@ http.createServer((request, response) => {
             // Async with Promise
             let promise = mountains.getAllMountains();
             promise.then((data) => {
-                let mountainsResp = [];
-                let mountainData = JSON.parse(data).mountains;
+                    let mountainsResp = [];
+                    let mountainData = JSON.parse(data).mountains;
                     mountainData.forEach((mountain) => {
                         mountainsResp.push({
-                                            "name": mountain.name,
-                                            "elevation" : mountain.elevation,
-                                            "effort": mountain.effort,
-                                            "img": mountain.img,
-                                            "desc": mountain.desc,
-                                            "coords": {
-                                                "lat": mountain.lat,
-                                                "lng": mountain.lng
-                                            }
-                                        });
-                });
-                response.statusCode = 200;
-                response.end(JSON.stringify({ "mountains": mountainsResp }));
-            })
+                            "name": mountain.name,
+                            "elevation": mountain.elevation,
+                            "effort": mountain.effort,
+                            "img": mountain.img,
+                            "desc": mountain.desc,
+                            "summit": mountain.summit,
+                            "coords": {
+                                "lat": mountain.lat,
+                                "lng": mountain.lng
+                            }
+                        });
+                    });
+                    response.statusCode = 200;
+                    response.end(JSON.stringify({ "mountains": mountainsResp }));
+                })
                 .catch((error) => {
                     response.statusCode = 500;
                     response.end();
@@ -104,18 +105,19 @@ http.createServer((request, response) => {
                 //console.log(parsedData);
 
                 let promise = mountains.insertMountain(
-                                                        parsedData.mtnName, 
-                                                        parsedData.mtnElevation, 
-                                                        parsedData.mtnEffort, 
-                                                        parsedData.mtnImage,
-                                                        parsedData.mtnDesc,
-                                                        parsedData.mtnLat,
-                                                        parsedData.mtnLng
-                                                    );
+                    parsedData.mtnName,
+                    parsedData.mtnElevation,
+                    parsedData.mtnEffort,
+                    parsedData.mtnImage,
+                    parsedData.mtnDesc,
+                    parsedData.mtnSummit,
+                    parsedData.mtnLat,
+                    parsedData.mtnLng
+                );
 
                 promise.then((data) => {
-                    response.statusCode = 200;
-                })
+                        response.statusCode = 200;
+                    })
                     .catch((error) => {
                         // Mountain already exists
                         response.statusCode = 403;

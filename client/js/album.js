@@ -37,6 +37,11 @@ $(document).ready(function() {
 
                         let cardText = document.createElement('p');
                         cardText.className = "card-text";
+                        // added for summit
+                        let cardSummit = document.createElement('p');
+                        cardSummit.className = "card-text";
+
+                        let cardSummitNode = document.createTextNode(`Summited: ${mountain.summit}`);
 
                         let cardTextNode = document.createTextNode(mountain.desc);
 
@@ -44,9 +49,11 @@ $(document).ready(function() {
 
                         cartTitle.appendChild(cartTitleTextNode);
                         cardText.appendChild(cardTextNode);
+                        cardSummit.appendChild(cardSummitNode);
 
                         cardBody.appendChild(cartTitle);
                         cardBody.appendChild(cardText);
+                        cardBody.appendChild(cardSummit);
 
                         card.appendChild(imgDiv);
                         card.appendChild(cardBody);

@@ -29,6 +29,13 @@ $(document).ready(function() {
             return false;
         }
 
+        // validate summit
+        if ($("#mtnSummit").prop("checked")) {
+            $("#mtnSummit").val();
+        } else {
+            $("#mtnSummit").val('no');
+        }
+
         // validate lat / lng
         // Note: Can break into Lat and Lgn checks, and place cursor as needed
         var regex = /^([-+]?)([\d]{1,2})(((\.)(\d+)(,)))(\s*)(([-+]?)([\d]{1,3})((\.)(\d+))?)$/;
@@ -55,7 +62,8 @@ $(document).ready(function() {
             "mtnImage": $('#mtnImage').val(),
             "mtnDesc": $('#mtnDesc').val(),
             "mtnLat": $('#mtnLat').val(),
-            "mtnLng": $('#mtnLng').val()
+            "mtnLng": $('#mtnLng').val(),
+            "mtnSummit": $('#mtnSummit').val()
         };
 
         $.post("http://localhost:3000/mountain", JSON.stringify(data), function() {})

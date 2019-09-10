@@ -53,6 +53,9 @@ $(document).ready(function() {
                                 $('#mtnDiff').html(mountain.effort);
                                 $('#mtnDesc').html(mountain.desc);
 
+                                // added summit changes
+                                $("#mtnSummit").html(`Summit: ${mountain.summit}`)
+
                                 // Show Div
                                 $('#mtnDiv').removeClass('hidden');
                                 $('#mapBtn').removeClass('hidden');

@@ -4,7 +4,7 @@ const Promise = require("promise");
 // read persisted data from file
 var getAllMountains = () => {
     return new Promise(
-        function (resolve, reject) {
+        function(resolve, reject) {
             fs.readFile('data/data.json', { encoding: 'utf8' }, (error, data) => {
                 if (error) {
                     reject(error);
@@ -26,14 +26,15 @@ var getMountains = () => {
 };
 
 // Insert a Mountain
-var insertMountain = (name, elevation, effort, img, desc, lat, lng) => {
+var insertMountain = (name, elevation, effort, img, desc, summit, lat, lng) => {
     var mountain = {
-        name, 
-        elevation, 
-        effort, 
-        img, 
-        desc, 
-        lat, 
+        name,
+        elevation,
+        effort,
+        img,
+        desc,
+        summit,
+        lat,
         lng
     };
 
@@ -53,7 +54,7 @@ var insertMountain = (name, elevation, effort, img, desc, lat, lng) => {
         mountains.push(mountain);
 
         return new Promise(
-            function (resolve, reject) {
+            function(resolve, reject) {
                 // persist data in file
                 fs.writeFile('data/data.json', JSON.stringify({ "mountains": mountains }), (error, data) => {
                     if (error) {
@@ -66,7 +67,7 @@ var insertMountain = (name, elevation, effort, img, desc, lat, lng) => {
     } else {
         // found a dup
         return new Promise(
-            function (resolve, reject) {
+            function(resolve, reject) {
                 reject();
             });
     }
